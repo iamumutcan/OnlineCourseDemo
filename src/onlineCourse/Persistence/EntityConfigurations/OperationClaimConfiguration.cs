@@ -6,6 +6,8 @@ using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NArchitecture.Core.Security.Constants;
+using Application.Features.Courses.Constants;
+
 
 namespace Persistence.EntityConfigurations;
 
@@ -97,6 +99,20 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
         );
         #endregion
 
+        
+        #region Courses
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = CoursesOperationClaims.Admin },
+                new() { Id = ++lastId, Name = CoursesOperationClaims.Read },
+                new() { Id = ++lastId, Name = CoursesOperationClaims.Write },
+                new() { Id = ++lastId, Name = CoursesOperationClaims.Create },
+                new() { Id = ++lastId, Name = CoursesOperationClaims.Update },
+                new() { Id = ++lastId, Name = CoursesOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
         return featureOperationClaims;
     }
 #pragma warning restore S1854 // Unused assignments should be removed
