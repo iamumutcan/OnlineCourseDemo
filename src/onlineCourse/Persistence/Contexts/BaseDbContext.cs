@@ -16,6 +16,7 @@ public class BaseDbContext : DbContext
     public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
     public DbSet<Course> Courses { get; set; }
     public DbSet<CourseContent> CourseContents { get; set; }
+    public DbSet<CourseDocument> CourseDocuments { get; set; }
 
     public BaseDbContext(DbContextOptions dbContextOptions, IConfiguration configuration)
         : base(dbContextOptions)

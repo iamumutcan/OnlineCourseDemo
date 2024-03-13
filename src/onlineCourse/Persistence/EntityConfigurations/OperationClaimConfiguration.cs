@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NArchitecture.Core.Security.Constants;
 using Application.Features.Courses.Constants;
 using Application.Features.CourseContents.Constants;
+using Application.Features.CourseDocuments.Constants;
+
 
 
 
@@ -125,6 +127,20 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
                 new() { Id = ++lastId, Name = CourseContentsOperationClaims.Create },
                 new() { Id = ++lastId, Name = CourseContentsOperationClaims.Update },
                 new() { Id = ++lastId, Name = CourseContentsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region CourseDocuments
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = CourseDocumentsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = CourseDocumentsOperationClaims.Read },
+                new() { Id = ++lastId, Name = CourseDocumentsOperationClaims.Write },
+                new() { Id = ++lastId, Name = CourseDocumentsOperationClaims.Create },
+                new() { Id = ++lastId, Name = CourseDocumentsOperationClaims.Update },
+                new() { Id = ++lastId, Name = CourseDocumentsOperationClaims.Delete },
             ]
         );
         #endregion

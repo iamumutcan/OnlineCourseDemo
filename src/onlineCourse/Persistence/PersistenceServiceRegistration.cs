@@ -26,6 +26,7 @@ public static class PersistenceServiceRegistration
 
         services.AddScoped<ICourseRepository, CourseRepository>();
         services.AddScoped<ICourseContentRepository, CourseContentRepository>();
+        services.AddScoped<ICourseDocumentRepository, CourseDocumentRepository>();
         return services;
     }
 }
