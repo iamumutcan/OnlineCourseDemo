@@ -20,6 +20,7 @@ using NArchitecture.Core.Mailing;
 using NArchitecture.Core.Mailing.MailKit;
 using NArchitecture.Core.Security.DependencyInjection;
 using Application.Services.Courses;
+using Application.Services.CourseContents;
 
 namespace Application;
 
@@ -61,6 +62,7 @@ public static class ApplicationServiceRegistration
         services.AddSecurityServices<Guid, int>();
 
         services.AddScoped<ICourseService, CourseManager>();
+        services.AddScoped<ICourseContentService, CourseContentManager>();
         return services;
     }
 
