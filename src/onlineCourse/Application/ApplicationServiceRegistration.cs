@@ -65,6 +65,7 @@ public static class ApplicationServiceRegistration
         services.AddScoped<ICourseService, CourseManager>();
         services.AddScoped<ICourseContentService, CourseContentManager>();
         services.AddScoped<ICourseDocumentService, CourseDocumentManager>();
+        services.AddScoped<ICourseDocumentService, CourseDocumentManager>();
         return services;
     }
 

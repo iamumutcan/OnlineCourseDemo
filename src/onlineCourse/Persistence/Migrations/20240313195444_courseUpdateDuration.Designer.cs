@@ -12,8 +12,8 @@ using Persistence.Contexts;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    [Migration("20240313184015_init")]
-    partial class init
+    [Migration("20240313195444_courseUpdateDuration")]
+    partial class courseUpdateDuration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,128 @@ namespace Persistence.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Domain.Entities.Course", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreatedDate");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletedDate");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Description");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Name");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Courses", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.CourseContent", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<Guid>("CourseId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CourseId");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreatedDate");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletedDate");
+
+                    b.Property<string>("Summary")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Summary");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("CourseContents", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.CourseDocument", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<Guid>("CourseContentId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CourseContentId");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreatedDate");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletedDate");
+
+                    b.Property<int>("Duration")
+                        .HasColumnType("int")
+                        .HasColumnName("Duration");
+
+                    b.Property<string>("FileExtension")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("FileExtension");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("FileName");
+
+                    b.Property<double>("FileSize")
+                        .HasColumnType("float")
+                        .HasColumnName("FileSize");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int")
+                        .HasColumnName("Type");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("UpdatedDate");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseContentId")
+                        .IsUnique();
+
+                    b.ToTable("CourseDocuments", (string)null);
+                });
 
             modelBuilder.Entity("Domain.Entities.EmailAuthenticator", b =>
                 {
@@ -231,6 +353,114 @@ namespace Persistence.Migrations
                             Id = 23,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Users.Delete"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Courses.Admin"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Courses.Read"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Courses.Write"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Courses.Create"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Courses.Update"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Courses.Delete"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "CourseContents.Admin"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "CourseContents.Read"
+                        },
+                        new
+                        {
+                            Id = 32,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "CourseContents.Write"
+                        },
+                        new
+                        {
+                            Id = 33,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "CourseContents.Create"
+                        },
+                        new
+                        {
+                            Id = 34,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "CourseContents.Update"
+                        },
+                        new
+                        {
+                            Id = 35,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "CourseContents.Delete"
+                        },
+                        new
+                        {
+                            Id = 36,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "CourseDocuments.Admin"
+                        },
+                        new
+                        {
+                            Id = 37,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "CourseDocuments.Read"
+                        },
+                        new
+                        {
+                            Id = 38,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "CourseDocuments.Write"
+                        },
+                        new
+                        {
+                            Id = 39,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "CourseDocuments.Create"
+                        },
+                        new
+                        {
+                            Id = 40,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "CourseDocuments.Update"
+                        },
+                        new
+                        {
+                            Id = 41,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "CourseDocuments.Delete"
                         });
                 });
 
@@ -378,12 +608,12 @@ namespace Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("6a3e8274-f96d-41e1-83fd-6358410bd902"),
+                            Id = new Guid("ed291e5f-bd22-4802-be6a-86516cbc6247"),
                             AuthenticatorType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "narch@kodlama.io",
-                            PasswordHash = new byte[] { 74, 27, 166, 43, 110, 38, 33, 249, 98, 58, 198, 4, 136, 210, 161, 210, 229, 66, 155, 167, 50, 182, 154, 55, 139, 97, 168, 168, 42, 109, 48, 228, 170, 141, 109, 249, 148, 223, 95, 32, 195, 16, 68, 247, 111, 204, 7, 85, 139, 93, 30, 220, 63, 148, 185, 26, 222, 142, 70, 19, 132, 214, 44, 84 },
-                            PasswordSalt = new byte[] { 172, 117, 91, 154, 60, 98, 218, 218, 215, 34, 28, 210, 7, 222, 179, 29, 207, 200, 193, 187, 48, 62, 147, 126, 79, 160, 126, 183, 65, 27, 111, 27, 67, 245, 87, 184, 14, 207, 177, 152, 181, 50, 249, 226, 238, 6, 223, 192, 74, 199, 13, 226, 103, 78, 196, 101, 74, 157, 181, 224, 22, 95, 31, 129, 147, 232, 230, 237, 48, 154, 17, 28, 204, 50, 178, 151, 174, 224, 203, 150, 249, 175, 150, 73, 89, 138, 15, 66, 225, 205, 209, 66, 5, 77, 185, 234, 248, 139, 56, 71, 206, 187, 162, 27, 161, 224, 110, 198, 80, 118, 215, 122, 142, 90, 34, 100, 94, 145, 66, 121, 245, 20, 30, 153, 127, 62, 243, 140 }
+                            PasswordHash = new byte[] { 146, 190, 222, 39, 177, 216, 204, 204, 66, 131, 227, 99, 255, 13, 158, 83, 176, 236, 236, 102, 147, 149, 84, 4, 49, 134, 100, 148, 35, 16, 239, 252, 3, 31, 11, 177, 218, 105, 75, 254, 157, 164, 94, 12, 57, 129, 221, 113, 227, 221, 107, 120, 139, 180, 234, 134, 84, 118, 174, 108, 145, 108, 210, 107 },
+                            PasswordSalt = new byte[] { 181, 212, 228, 132, 141, 179, 243, 209, 167, 249, 181, 194, 105, 234, 48, 3, 4, 200, 171, 90, 180, 92, 188, 149, 33, 240, 25, 244, 37, 242, 105, 202, 174, 228, 213, 115, 28, 53, 77, 222, 132, 141, 253, 185, 200, 13, 88, 159, 75, 167, 22, 240, 96, 207, 103, 16, 95, 102, 253, 172, 161, 174, 10, 145, 17, 38, 82, 222, 248, 117, 102, 99, 179, 45, 217, 97, 95, 105, 250, 76, 93, 12, 142, 200, 93, 219, 185, 32, 82, 93, 7, 180, 121, 166, 231, 139, 212, 86, 79, 237, 175, 183, 79, 68, 196, 20, 141, 89, 219, 216, 197, 165, 237, 246, 78, 95, 64, 248, 0, 23, 60, 71, 199, 96, 196, 19, 4, 49 }
                         });
                 });
 
@@ -425,11 +655,33 @@ namespace Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ef66f430-1058-4852-8b7b-bd9effd2b575"),
+                            Id = new Guid("6cd63313-cd53-4efb-ac5c-b34aa3906912"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OperationClaimId = 1,
-                            UserId = new Guid("6a3e8274-f96d-41e1-83fd-6358410bd902")
+                            UserId = new Guid("ed291e5f-bd22-4802-be6a-86516cbc6247")
                         });
+                });
+
+            modelBuilder.Entity("Domain.Entities.CourseContent", b =>
+                {
+                    b.HasOne("Domain.Entities.Course", "Course")
+                        .WithMany("CourseContents")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("Domain.Entities.CourseDocument", b =>
+                {
+                    b.HasOne("Domain.Entities.CourseContent", "CourseContent")
+                        .WithOne("CourseDocument")
+                        .HasForeignKey("Domain.Entities.CourseDocument", "CourseContentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CourseContent");
                 });
 
             modelBuilder.Entity("Domain.Entities.EmailAuthenticator", b =>
@@ -482,6 +734,17 @@ namespace Persistence.Migrations
                     b.Navigation("OperationClaim");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Course", b =>
+                {
+                    b.Navigation("CourseContents");
+                });
+
+            modelBuilder.Entity("Domain.Entities.CourseContent", b =>
+                {
+                    b.Navigation("CourseDocument")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Entities.User", b =>

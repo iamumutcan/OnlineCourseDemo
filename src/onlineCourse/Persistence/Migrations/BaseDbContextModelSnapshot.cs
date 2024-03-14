@@ -60,72 +60,88 @@ namespace Persistence.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
 
                     b.Property<Guid>("CourseId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CourseId");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreatedDate");
 
                     b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletedDate");
 
                     b.Property<string>("Summary")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Summary");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasColumnName("UpdatedDate");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("CourseContent");
+                    b.ToTable("CourseContents", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.CourseDocument", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
 
                     b.Property<Guid>("CourseContentId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CourseContentId");
 
                     b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreatedDate");
 
                     b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DeletedDate");
 
-                    b.Property<TimeSpan>("Duration")
-                        .HasColumnType("time");
+                    b.Property<int>("Duration")
+                        .HasColumnType("int")
+                        .HasColumnName("Duration");
 
                     b.Property<string>("FileExtension")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("FileExtension");
 
                     b.Property<string>("FileName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("FileName");
 
                     b.Property<double>("FileSize")
-                        .HasColumnType("float");
+                        .HasColumnType("float")
+                        .HasColumnName("FileSize");
 
                     b.Property<int>("Type")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("Type");
 
                     b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime2")
+                        .HasColumnName("UpdatedDate");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CourseContentId")
                         .IsUnique();
 
-                    b.ToTable("CourseDocument");
+                    b.ToTable("CourseDocuments", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.EmailAuthenticator", b =>
@@ -370,6 +386,78 @@ namespace Persistence.Migrations
                             Id = 29,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Courses.Delete"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "CourseContents.Admin"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "CourseContents.Read"
+                        },
+                        new
+                        {
+                            Id = 32,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "CourseContents.Write"
+                        },
+                        new
+                        {
+                            Id = 33,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "CourseContents.Create"
+                        },
+                        new
+                        {
+                            Id = 34,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "CourseContents.Update"
+                        },
+                        new
+                        {
+                            Id = 35,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "CourseContents.Delete"
+                        },
+                        new
+                        {
+                            Id = 36,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "CourseDocuments.Admin"
+                        },
+                        new
+                        {
+                            Id = 37,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "CourseDocuments.Read"
+                        },
+                        new
+                        {
+                            Id = 38,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "CourseDocuments.Write"
+                        },
+                        new
+                        {
+                            Id = 39,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "CourseDocuments.Create"
+                        },
+                        new
+                        {
+                            Id = 40,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "CourseDocuments.Update"
+                        },
+                        new
+                        {
+                            Id = 41,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "CourseDocuments.Delete"
                         });
                 });
 
@@ -517,12 +605,12 @@ namespace Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("7867f6e1-6b14-4895-9723-0c0cc511e6d6"),
+                            Id = new Guid("ed291e5f-bd22-4802-be6a-86516cbc6247"),
                             AuthenticatorType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "narch@kodlama.io",
-                            PasswordHash = new byte[] { 236, 44, 240, 171, 27, 190, 159, 153, 172, 93, 103, 17, 181, 6, 213, 14, 17, 202, 132, 186, 180, 133, 246, 249, 50, 128, 212, 227, 10, 8, 188, 208, 121, 242, 234, 163, 235, 128, 189, 226, 65, 125, 118, 88, 152, 194, 66, 94, 170, 223, 124, 14, 64, 95, 133, 204, 25, 64, 171, 122, 56, 24, 4, 225 },
-                            PasswordSalt = new byte[] { 154, 200, 242, 244, 132, 26, 7, 7, 147, 115, 88, 181, 23, 45, 233, 191, 152, 160, 193, 216, 78, 115, 34, 243, 137, 229, 202, 245, 124, 173, 247, 219, 153, 109, 139, 167, 152, 215, 180, 185, 35, 116, 148, 134, 248, 97, 214, 104, 230, 22, 40, 85, 18, 71, 253, 141, 157, 153, 125, 177, 136, 81, 172, 73, 24, 4, 200, 243, 235, 136, 196, 206, 206, 230, 222, 14, 125, 217, 213, 19, 227, 75, 70, 134, 27, 148, 145, 82, 215, 172, 34, 21, 169, 33, 159, 243, 32, 115, 184, 17, 19, 10, 20, 147, 228, 201, 131, 230, 198, 107, 27, 36, 24, 182, 61, 229, 34, 187, 240, 85, 92, 9, 156, 122, 52, 24, 188, 172 }
+                            PasswordHash = new byte[] { 146, 190, 222, 39, 177, 216, 204, 204, 66, 131, 227, 99, 255, 13, 158, 83, 176, 236, 236, 102, 147, 149, 84, 4, 49, 134, 100, 148, 35, 16, 239, 252, 3, 31, 11, 177, 218, 105, 75, 254, 157, 164, 94, 12, 57, 129, 221, 113, 227, 221, 107, 120, 139, 180, 234, 134, 84, 118, 174, 108, 145, 108, 210, 107 },
+                            PasswordSalt = new byte[] { 181, 212, 228, 132, 141, 179, 243, 209, 167, 249, 181, 194, 105, 234, 48, 3, 4, 200, 171, 90, 180, 92, 188, 149, 33, 240, 25, 244, 37, 242, 105, 202, 174, 228, 213, 115, 28, 53, 77, 222, 132, 141, 253, 185, 200, 13, 88, 159, 75, 167, 22, 240, 96, 207, 103, 16, 95, 102, 253, 172, 161, 174, 10, 145, 17, 38, 82, 222, 248, 117, 102, 99, 179, 45, 217, 97, 95, 105, 250, 76, 93, 12, 142, 200, 93, 219, 185, 32, 82, 93, 7, 180, 121, 166, 231, 139, 212, 86, 79, 237, 175, 183, 79, 68, 196, 20, 141, 89, 219, 216, 197, 165, 237, 246, 78, 95, 64, 248, 0, 23, 60, 71, 199, 96, 196, 19, 4, 49 }
                         });
                 });
 
@@ -564,10 +652,10 @@ namespace Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("93ea5777-a6dc-45a5-9769-2b13e30105f2"),
+                            Id = new Guid("6cd63313-cd53-4efb-ac5c-b34aa3906912"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OperationClaimId = 1,
-                            UserId = new Guid("7867f6e1-6b14-4895-9723-0c0cc511e6d6")
+                            UserId = new Guid("ed291e5f-bd22-4802-be6a-86516cbc6247")
                         });
                 });
 

@@ -20,7 +20,10 @@ public class MappingProfiles : Profile
         CreateMap<Course, UpdatedCourseResponse>().ReverseMap();
         CreateMap<Course, DeleteCourseCommand>().ReverseMap();
         CreateMap<Course, DeletedCourseResponse>().ReverseMap();
-        CreateMap<Course, GetByIdCourseResponse>().ReverseMap();
+        CreateMap<Course, GetByIdCourseResponse>()
+            .ForMember(destinationMember: c => c.CourseContents, memberOptions: opt => opt.MapFrom(c => c.CourseContents))
+
+            .ReverseMap();
         CreateMap<Course, GetListCourseListItemDto>().ReverseMap();
         CreateMap<IPaginate<Course>, GetListResponse<GetListCourseListItemDto>>().ReverseMap();
     }
